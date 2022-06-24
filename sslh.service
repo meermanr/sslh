@@ -1,0 +1,14 @@
+# /etc/systemd/system/sslh.service
+[Unit]
+Description=HTTP/HTTPS/SSH Switching Service
+After=docker.service
+
+[Service]
+Restart=always
+User=meermanr
+WorkingDirectory=/home/meermanr/projects/sslh
+ExecStart=/usr/local/bin/docker-compose up
+ExecStop=/usr/local/bin/docker-compose down
+
+[Install]
+WantedBy=multi-user.target

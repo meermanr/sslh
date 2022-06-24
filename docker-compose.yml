@@ -1,0 +1,20 @@
+---
+version: '2'
+
+services:
+    sslh:
+        build: .
+        network_mode: host
+        command:
+            # Note that our true SSH and HTTP/HTTPS server are bound to
+            # localhost (127.0.0.1), leaving sslh to bind to the "any"
+            # (0.0.0.0) address.
+            - sslh
+            - --foreground
+            - --numeric
+            - --listen=robmeerman.co.uk:80
+            - --listen=robmeerman.co.uk:443
+            - --ssh=127.0.0.1:22
+            - --http=127.0.0.1:80
+            - --tls=127.0.0.1:443
+
